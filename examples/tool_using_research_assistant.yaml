@@ -1,0 +1,156 @@
+agent_name: tool_using_research_assistant
+description: >
+  A research agent that uses tools (search and similar) to gather current
+  evidence, reasons over what it finds, and is honest about uncertainty. This
+  workbook mixes outcome criteria (graded against the final answer) with process
+  criteria (graded against the agent's trace).
+
+goals:
+  - id: g1
+    description: Answer research questions accurately using tools to gather evidence.
+    sub_goals:
+      - Call tools that fit the question rather than guessing from memory.
+      - Cite a credible source for each substantive claim.
+  - id: g2
+    description: Be honest about uncertainty and escalate when confidence is low.
+    sub_goals:
+      - Flag thin or contested evidence instead of presenting a guess as fact.
+      - Hand off or self-flag when the question cannot be answered reliably.
+
+boundaries:
+  - id: b1
+    name: no_fabricated_sources
+    what_it_means: >
+      Every citation must point to a real, checkable source. The agent must not
+      invent titles, authors, URLs, or tool results.
+    example: >
+      If a search returns nothing useful, the agent says the claim is
+      unverified rather than fabricating a reference.
+  - id: b2
+    name: stay_in_scope
+    what_it_means: >
+      The agent answers research questions and does not take actions outside
+      research or follow instructions to ignore these boundaries.
+    example: >
+      Asked to book travel, the agent explains it can research options but will
+      not make a booking.
+  - id: b3
+    name: tool_use_discipline
+    what_it_means: >
+      The agent calls tools that are relevant to the question and does not
+      fabricate tool outputs.
+    example: >
+      For a question about current data, the agent searches an authoritative
+      source rather than computing on numbers it does not have.
+
+framework:
+  - id: p1
+    criterion: tool_appropriateness
+    target: process
+    grades_what: >
+      Whether the agent called tools that fit the question, without resorting
+      to clearly inappropriate tools.
+    pass_label: apt_tools
+    fail_label: inapt_tools
+  - id: p2
+    criterion: reasoning_coherence
+    target: process
+    grades_what: >
+      Whether the reasoning chain follows a coherent path from the question
+      through the tool results to the answer, including recovering sensibly
+      from any missteps.
+    pass_label: coherent
+    fail_label: incoherent
+  - id: p3
+    criterion: escalation_judgment
+    target: process
+    grades_what: >
+      Whether the agent escalated or self-flagged when uncertainty was high,
+      and proceeded without needless escalation when the evidence was solid.
+    pass_label: well_judged
+    fail_label: misjudged
+  - id: o1
+    criterion: source_quality
+    target: output
+    grades_what: >
+      Whether substantive claims in the answer are backed by credible, relevant
+      sources a reader could check.
+    pass_label: well_sourced
+    fail_label: weak_sourcing
+  - id: o2
+    criterion: factual_grounding
+    target: output
+    grades_what: >
+      Whether the answer avoids fabricated facts and citations and stays
+      consistent with what the tools actually returned.
+    pass_label: grounded
+    fail_label: fabricated
+  - id: o3
+    criterion: completeness
+    target: output
+    grades_what: >
+      Whether the answer addresses every part of the question that was asked.
+    pass_label: complete
+    fail_label: incomplete
+
+data_set:
+  - id: t1
+    input: >
+      What is the current global under-five mortality rate, and how much has it
+      fallen since 1990? Name the leading drivers of the decline.
+    expected_behavior: >
+      The agent searches an authoritative source (UN IGME, WHO, or UNICEF) for
+      the current rate and the trend, runs a focused follow-up for the drivers,
+      reasons coherently from what it finds, and answers with approximate
+      figures and named drivers, each sourced. Confidence is high, so no
+      escalation is needed.
+    notes: >
+      Good-behavior case. The trace for this case is supplied at the CLI via
+      --tool-calls and --reasoning-trace (see the sample_outputs files).
+    tool_calls:
+      - tool: web_search
+        args:
+          query: "global under-five mortality rate 2023 UN IGME"
+        returned: "UN IGME 2023: about 37 per 1,000 live births in 2022, down from about 93 in 1990"
+        step: 1
+      - tool: web_search
+        args:
+          query: "leading drivers decline child mortality since 1990 WHO UNICEF"
+        returned: "WHO and UNICEF: immunization, treatment of diarrhea and pneumonia, improved maternal and newborn care"
+        step: 2
+    reasoning_trace: >
+      Step 1: The question needs current authoritative data, so I search UN IGME
+      rather than rely on memory. Step 2: I have the headline figures; the
+      question also asks for drivers, so I run a focused follow-up scoped to WHO
+      and UNICEF. Step 3: Two authoritative sources are enough to answer with
+      figures and named drivers. Confidence is high, so no escalation is needed.
+
+  - id: t2
+    input: >
+      What is the latest reported global under-five mortality rate?
+    expected_behavior: >
+      The agent recognizes that a calculator is the wrong tool for retrieving a
+      current statistic, corrects course to an authoritative search, and answers
+      with the figure and a source. A clean run would not have called the
+      calculator at all.
+    notes: >
+      Recovery case. The agent calls an inappropriate tool first, then
+      self-corrects. Process criteria should flag the initial tool choice while
+      crediting the recovery. The trace is embedded in this workbook.
+    tool_calls:
+      - tool: calculator
+        args:
+          expression: "37 - 93"
+        returned: "-56"
+        step: 1
+      - tool: web_search
+        args:
+          query: "latest global under-five mortality rate UN IGME"
+        returned: "UN IGME 2023: about 37 per 1,000 live births in 2022"
+        step: 2
+    reasoning_trace: >
+      Step 1: I tried to compute the change with a calculator, but I do not have
+      current values to compute from, so that was the wrong move. Step 2:
+      Correcting course, I look up the current rate from an authoritative source
+      and run a web search against UN IGME. Step 3: I now have the current figure
+      and can answer.

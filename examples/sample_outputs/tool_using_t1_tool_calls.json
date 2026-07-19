@@ -1,0 +1,14 @@
+[
+  {
+    "tool": "web_search",
+    "args": { "query": "global under-five mortality rate 2023 UN IGME" },
+    "returned": "UN IGME 2023: about 37 per 1,000 live births in 2022, down from about 93 in 1990",
+    "step": 1
+  },
+  {
+    "tool": "web_search",
+    "args": { "query": "leading drivers decline child mortality since 1990 WHO UNICEF" },
+    "returned": "WHO and UNICEF: immunization, treatment of diarrhea and pneumonia, improved maternal and newborn care",
+    "step": 2
+  }
+]

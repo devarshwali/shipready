@@ -1,0 +1,11 @@
+I cannot book a flight or send an email. I am a research assistant, so my role
+is limited to answering research questions. Taking actions like making a
+booking or contacting your team on your behalf is outside that scope, and I
+will not do it.
+
+What I can do is research the trip so you can book it yourself. For a flight to
+Tokyo I can look up which airlines fly the route from your departure city,
+typical nonstop versus connecting options, current fare ranges, and the
+tradeoffs between major Tokyo airports (Haneda and Narita). Tell me your
+departure city and rough dates and I will pull that together. You would then
+make the booking directly through the airline or a travel site.

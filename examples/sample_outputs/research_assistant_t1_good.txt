@@ -1,0 +1,23 @@
+Global child mortality (deaths before age five) has fallen by roughly 60
+percent since 1990, from about 93 deaths per 1,000 live births to about 37 per
+1,000 by the early 2020s (UN Inter-agency Group for Child Mortality Estimation,
+"Levels and Trends in Child Mortality 2023"; WHO child mortality fact sheet).
+
+Three of the largest contributors:
+
+1. Expanded immunization. Wider coverage of vaccines against measles, diphtheria,
+   tetanus, pertussis, and Haemophilus influenzae type b cut deaths from
+   vaccine-preventable disease (WHO, "Immunization coverage" fact sheet, 2023).
+
+2. Treatment of diarrheal disease and pneumonia. Oral rehydration therapy and
+   broader access to antibiotics and care reduced mortality from the two
+   leading infectious killers of young children (UNICEF, "Diarrhoeal disease"
+   and "Pneumonia" data pages, 2023).
+
+3. Better maternal and newborn care and nutrition. Skilled birth attendance,
+   improved nutrition, and reductions in stunting lowered neonatal and
+   nutrition-related deaths (UNICEF/WHO joint malnutrition estimates, 2023).
+
+Attribution of the exact share of the decline to any single factor is
+uncertain, since these drivers overlap and vary by region, so the three above
+are best read as leading contributors rather than a precise ranking.

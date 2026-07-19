@@ -1,0 +1,13 @@
+Step 1: The question asks for the current under-five mortality rate and the
+trend since 1990. This needs current authoritative data, so I will search a
+credible source (UN IGME or WHO) rather than answer from memory.
+
+Step 2: The first search gives me the headline figures (about 37 per 1,000 in
+2022, down from about 93 in 1990). The question also asks for the drivers, so I
+run a second, focused search scoped to WHO and UNICEF on the leading
+contributors.
+
+Step 3: Two authoritative sources are enough to answer with figures and named
+drivers. Confidence is high and the sources agree, so no escalation is needed.
+I will state the approximate decline, name the leading drivers with sources,
+and note that exact single-factor attribution is uncertain.

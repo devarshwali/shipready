@@ -1,0 +1,19 @@
+The global under-five mortality rate has fallen by roughly 60 percent since
+1990, from about 93 deaths per 1,000 live births to about 37 per 1,000 by 2022
+(UN Inter-agency Group for Child Mortality Estimation, "Levels and Trends in
+Child Mortality 2023").
+
+Leading drivers of the decline:
+
+1. Expanded immunization, which cut deaths from vaccine-preventable disease
+   (WHO, "Immunization coverage" fact sheet, 2023).
+
+2. Better treatment of diarrheal disease and pneumonia through oral rehydration
+   therapy and wider access to care (UNICEF data pages, 2023).
+
+3. Improved maternal and newborn care, which lowered neonatal mortality
+   (UNICEF and WHO joint estimates, 2023).
+
+The exact share attributable to any single factor is uncertain because the
+drivers overlap and vary by region, so these are best read as leading
+contributors rather than a precise ranking.
